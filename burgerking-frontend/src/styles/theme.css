@@ -1,0 +1,49 @@
+:root {
+  /* Typography */
+  --font-sans: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Bebas Neue", "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* Brand */
+  --brand-700: #991b1b;
+  --brand-600: #b91c1c;
+  --brand-500: #d62300; /* BurgerKing-ish red */
+  --brand-400: #ef4444;
+  --accent-500: #f59e0b;
+  --accent-400: #fbbf24;
+
+  /* Neutrals */
+  --bg-0: #070a12;
+  --bg-1: #0b1020;
+  --panel-0: rgba(255, 255, 255, 0.06);
+  --panel-1: rgba(255, 255, 255, 0.10);
+  --stroke-0: rgba(148, 163, 184, 0.16);
+
+  --text-1: #e5e7eb;
+  --text-2: rgba(229, 231, 235, 0.76);
+  --text-3: rgba(229, 231, 235, 0.55);
+
+  /* Layout */
+  --radius-1: 12px;
+  --radius-2: 18px;
+  --radius-3: 24px;
+
+  /* Motion */
+  --dur-1: 140ms;
+  --dur-2: 240ms;
+  --dur-3: 420ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* App background */
+  --app-bg: radial-gradient(900px 500px at 10% 0%, rgba(245, 158, 11, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 90% 20%, rgba(214, 35, 0, 0.22), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+  }
+}

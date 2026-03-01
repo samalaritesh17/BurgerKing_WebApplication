@@ -1,0 +1,98 @@
+/* Scoped to the Manage Staff page to avoid CSS collisions */
+.manage-staff-page {
+  color: var(--text-1);
+}
+
+/* Header */
+.manage-staff-page .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.manage-staff-page .page-header h1 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.manage-staff-page .page-header p {
+  font-size: 14px;
+  color: rgba(229, 231, 235, 0.62);
+}
+
+/* Card */
+.manage-staff-page .card {
+  background:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.10), transparent 55%),
+    linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 22px 65px rgba(0, 0, 0, 0.55);
+}
+
+/* Table */
+.manage-staff-page .premium-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manage-staff-page .premium-table th {
+  font-size: 13px;
+  color: rgba(229, 231, 235, 0.60);
+  text-align: left;
+  padding-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.manage-staff-page .premium-table td {
+  padding: 14px 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+/* Status */
+.manage-staff-page .status {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.manage-staff-page .status.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.manage-staff-page .status.inactive {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Action Buttons */
+.manage-staff-page .icon-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  margin-left: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.manage-staff-page .icon-btn.edit:hover {
+  color: #f59e0b;
+  transform: scale(1.2);
+}
+
+.manage-staff-page .icon-btn.delete:hover {
+  color: #ef4444;
+  transform: scale(1.2);
+}
+
+
+.manage-staff-page .secondary-btn {
+  border-radius: 12px;
+}

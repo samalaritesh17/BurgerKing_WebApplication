@@ -1,0 +1,195 @@
+/* Scoped styles for the public welcome page */
+
+/* FULL SCREEN BACKGROUND */
+.welcome-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #d62300, #f5a623);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* DARK OVERLAY */
+.welcome-wrapper .overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.65)
+  );
+  z-index: 1;
+}
+
+/* GRID LAYOUT */
+.welcome-wrapper .welcome-grid {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  padding: 80px;
+}
+
+/* LEFT SECTION */
+.welcome-wrapper .left-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideInLeft 1.2s ease forwards;
+}
+
+.welcome-wrapper .brand {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.welcome-wrapper .brand span {
+  color: #ffeb3b;
+}
+
+.welcome-wrapper .headline {
+  font-size: 2.2rem;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.welcome-wrapper .tagline {
+  margin-top: 20px;
+  max-width: 600px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* BUTTONS */
+.welcome-wrapper .cta-buttons {
+  margin-top: 45px;
+  display: flex;
+  gap: 20px;
+}
+
+.welcome-wrapper .btn {
+  padding: 14px 40px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.welcome-wrapper .btn-primary {
+  background: #fff;
+  color: #d62300;
+  border: none;
+}
+
+.welcome-wrapper .btn-primary:hover {
+  background: #ffeb3b;
+  transform: translateY(-4px);
+}
+
+.welcome-wrapper .btn-outline {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.welcome-wrapper .btn-outline:hover {
+  background: #fff;
+  color: #d62300;
+  transform: translateY(-4px);
+}
+
+/* RIGHT SECTION */
+.welcome-wrapper .right-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideInRight 1.2s ease forwards;
+}
+
+/* GLASS CARD */
+.welcome-wrapper .glass-card {
+  width: 420px;
+  padding: 40px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  color: #fff;
+  animation: float 4s ease-in-out infinite;
+}
+
+.welcome-wrapper .glass-card .icon {
+  font-size: 5rem;
+  margin-bottom: 15px;
+}
+
+.welcome-wrapper .glass-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.welcome-wrapper .glass-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* ANIMATIONS */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .welcome-wrapper .welcome-grid {
+    grid-template-columns: 1fr;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .welcome-wrapper .right-section {
+    display: none;
+  }
+
+  .welcome-wrapper .cta-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

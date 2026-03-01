@@ -1,0 +1,191 @@
+/* =========================
+   PAGE LAYOUT
+========================= */
+.checkout-page {
+  padding: 0;
+  max-width: none;
+  margin: 0;
+  min-height: calc(100vh - 78px);
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+.checkout-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.4px;
+}
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+.checkout-table-wrap {
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+  overflow: auto;
+}
+
+.checkout-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 860px;
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+.checkout-table thead {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(214, 35, 0, 0.92));
+}
+
+.checkout-table th {
+  padding: 18px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #140a06;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+/* =========================
+   TABLE BODY
+========================= */
+.checkout-table td {
+  padding: 16px 14px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.88);
+  transition: 0.2s ease;
+}
+
+/* Zebra Rows */
+.checkout-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Row Hover */
+.checkout-table tbody tr:hover {
+  background: rgba(245, 158, 11, 0.06);
+}
+
+/* Dish Name Emphasis */
+.checkout-table td:first-child {
+  font-weight: 600;
+  text-align: left;
+  padding-left: 22px;
+}
+
+/* Discount Styling */
+.checkout-table td:nth-child(3) {
+  font-weight: 600;
+  color: rgba(245, 158, 11, 0.95);
+}
+
+/* Quantity */
+.checkout-table td:nth-child(4) {
+  font-weight: 600;
+}
+
+/* Final Price */
+.checkout-table td:nth-child(5) {
+  font-weight: 600;
+  color: rgba(34, 197, 94, 0.92);
+}
+
+/* Item Total */
+.checkout-table td:nth-child(6) {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================
+   FOOTER SECTION
+========================= */
+.checkout-footer {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================
+   GRAND TOTAL SECTION
+========================= */
+.grand-total {
+  padding: 18px 26px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #140a06;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(214, 35, 0, 0.92));
+  border-radius: 16px;
+  box-shadow: 0 18px 55px rgba(214, 35, 0, 0.28);
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   PLACE ORDER BUTTON
+========================= */
+.place-order-btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform var(--dur-2) var(--ease-spring), background var(--dur-2) var(--ease-out);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+}
+
+.place-order-btn:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.place-order-btn:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   EMPTY CART TEXT
+========================= */
+.checkout-page p {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: rgba(229, 231, 235, 0.62);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 768px) {
+  .checkout-table th,
+  .checkout-table td {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .checkout-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grand-total {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .place-order-btn {
+    width: 100%;
+  }
+}

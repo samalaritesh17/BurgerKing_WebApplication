@@ -1,0 +1,331 @@
+/* Admin shell: sidebar + topbar + scrollable content */
+
+.admin-shell {
+  min-height: 100vh;
+  display: flex;
+  background: radial-gradient(900px 500px at 15% 0%, rgba(245, 158, 11, 0.10), transparent 55%),
+    radial-gradient(900px 500px at 95% 25%, rgba(214, 35, 0, 0.14), transparent 60%),
+    linear-gradient(180deg, #0b1020, #070a12);
+  color: var(--text-1);
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 32px;
+}
+
+.admin-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.admin-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.admin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.42);
+}
+
+/* Sidebar (scoped so class names won't leak) */
+.admin-shell .sidebar-premium {
+  width: 280px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(148, 163, 184, 0.10);
+  background: linear-gradient(180deg, rgba(10, 15, 30, 0.92) 0%, rgba(7, 10, 18, 0.92) 100%);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-shell .sidebar-premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: radial-gradient(circle at top left, rgba(245, 158, 11, 0.14), transparent 62%);
+  pointer-events: none;
+}
+
+.admin-shell .sidebar-premium .brand {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--accent-400), var(--brand-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-shell .nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-shell .nav-item {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 14px 16px;
+  border-radius: 14px;
+  color: rgba(229, 231, 235, 0.72);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-spring), background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-shell .nav-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-500), var(--brand-500));
+  transform: scaleY(0);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.admin-shell .nav-item:hover {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  transform: translateX(4px);
+}
+
+.admin-shell .nav-item.active {
+  background: rgba(214, 35, 0, 0.10);
+  border-color: rgba(214, 35, 0, 0.18);
+  color: rgba(255, 255, 255, 0.94);
+  transform: translateX(4px);
+}
+
+.admin-shell .nav-item.active::before {
+  transform: scaleY(1);
+}
+
+.admin-shell .logout-btn {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.10);
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  padding: 14px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform var(--dur-2) var(--ease-spring), background var(--dur-2) var(--ease-out);
+  position: relative;
+  z-index: 1;
+}
+
+.admin-shell .logout-btn:hover {
+  background: rgba(239, 68, 68, 0.14);
+  transform: translateY(-2px);
+}
+
+/* Topbar */
+.admin-shell .topbar-glass {
+  height: 78px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px) saturate(140%);
+  background: rgba(10, 15, 30, 0.72);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+}
+
+.admin-shell .topbar-glass h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.admin-shell .topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-shell .profile {
+  position: relative;
+}
+
+.admin-shell .profile-btn {
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-spring), background var(--dur-2) var(--ease-out);
+}
+
+.admin-shell .profile-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.admin-shell .profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  width: 240px;
+  z-index: 1100;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.18), transparent 55%),
+    linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
+  backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: 0 36px 110px rgba(0, 0, 0, 0.78);
+  padding: 12px;
+  animation: ui-pop var(--dur-3) var(--ease-spring) both;
+  opacity: 1;
+}
+
+.admin-shell .profile-meta {
+  padding: 10px 10px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  margin-bottom: 10px;
+}
+
+.admin-shell .profile-name {
+  font-size: 14px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.admin-shell .profile-role {
+  font-size: 12px;
+  color: rgba(229, 231, 235, 0.62);
+  margin-top: 2px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-shell .profile-logout {
+  width: 100%;
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  background: rgba(239, 68, 68, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 900;
+  transition: transform var(--dur-2) var(--ease-spring), background var(--dur-2) var(--ease-out);
+}
+
+.admin-shell .profile-logout:hover {
+  transform: translateY(-1px);
+  background: rgba(239, 68, 68, 0.14);
+}
+
+.admin-shell .bell {
+  position: relative;
+  font-size: 20px;
+  color: rgba(229, 231, 235, 0.82);
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-spring), color var(--dur-2) var(--ease-out);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.admin-shell .bell:hover {
+  background: rgba(148, 163, 184, 0.10);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.admin-shell .dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 10px;
+  width: 10px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-radius: 50%;
+  border: 2px solid rgba(10, 15, 30, 0.72);
+  animation: admin-pulse 2s ease-in-out infinite;
+}
+
+@keyframes admin-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.82;
+  }
+}
+
+.admin-shell .avatar {
+  font-size: 32px;
+  cursor: pointer;
+  transition: transform var(--dur-2) var(--ease-spring);
+}
+
+.admin-shell .avatar:hover {
+  transform: scale(1.08);
+}
+
+@media (max-width: 920px) {
+  .admin-shell .sidebar-premium {
+    width: 248px;
+  }
+
+  .admin-scroll {
+    padding: 24px;
+  }
+
+  .admin-shell .topbar-glass {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-shell {
+    flex-direction: column;
+  }
+
+  .admin-shell .sidebar-premium {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}

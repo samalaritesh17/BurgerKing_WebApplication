@@ -1,0 +1,164 @@
+/* Scoped styles for register/login pages */
+
+/* FULL SCREEN */
+.register-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #f5a623, #d62300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-sans);
+}
+
+/* OVERLAY */
+.register-wrapper .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* CARD */
+.register-wrapper .register-card {
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  padding: 45px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  animation: fadeUp 1s ease;
+}
+
+/* TITLES */
+.register-wrapper .title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.register-wrapper .subtitle {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* FORM */
+.register-wrapper form {
+  margin-top: 30px;
+}
+
+.register-wrapper .input-group {
+  margin-bottom: 18px;
+}
+
+.register-wrapper .input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.register-wrapper .input-group input,
+.register-wrapper .input-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  outline: none;
+  font-size: 0.95rem;
+  background: rgba(0, 0, 0, 0.28);
+  color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  transition: background var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+}
+
+.register-wrapper .input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.register-wrapper .input-group input:focus,
+.register-wrapper .input-group select:focus {
+  box-shadow: 0 0 0 2px #ffeb3b;
+  border-color: rgba(255, 235, 59, 0.65);
+  background: rgba(0, 0, 0, 0.34);
+}
+
+/* BUTTONS */
+.register-wrapper .btn-register {
+  width: 100%;
+  padding: 14px;
+  border-radius: 40px;
+  background: #fff;
+  color: #d62300;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.35s ease;
+}
+
+.register-wrapper .btn-register:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.register-wrapper .btn-register:hover {
+  background: #ffeb3b;
+  transform: translateY(-3px);
+}
+
+/* SUCCESS STATE */
+.register-wrapper .success-box {
+  text-align: center;
+  animation: fadeUp 0.8s ease;
+}
+
+.register-wrapper .success-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.register-wrapper .success-box h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.register-wrapper .success-box p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* BACK BUTTON */
+.register-wrapper .btn-back {
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: #fff;
+  color: #d62300;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.register-wrapper .btn-back:hover {
+  background: #ffeb3b;
+  transform: translateY(-3px);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,44 @@
+# ===============================
+# BurgerKing - Spring Boot Config (Example)
+# Copy relevant settings into:
+#   burgerking-backend/src/main/resources/application.properties
+# Or override via environment variables.
+# ===============================
+
+# ===============================
+# DATABASE CONFIGURATION
+# ===============================
+
+spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/burgerking_db}
+spring.datasource.username=${DB_USERNAME:root}
+spring.datasource.password=${DB_PASSWORD:root}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# ===============================
+# JPA / HIBERNATE
+# ===============================
+
+# validate: safest for production; requires schema to exist
+spring.jpa.hibernate.ddl-auto=validate
+
+spring.jpa.show-sql=${JPA_SHOW_SQL:false}
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# ===============================
+# SERVER
+# ===============================
+
+server.port=8080
+
+# ===============================
+# FILE UPLOADS
+# ===============================
+
+app.upload-dir=${UPLOAD_DIR:uploads}
+
+# ===============================
+# JWT
+# ===============================
+
+app.jwt.secret=${JWT_SECRET:change-me-change-me-change-me-change-me}
+app.jwt.expiration-ms=${JWT_EXPIRATION_MS:900000}

@@ -1,0 +1,31 @@
+# Root ignores (GitHub)
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors/IDEs
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+
+# Env files (never commit real secrets)
+.env
+.env.local
+.env.*.local
+
+# Backend
+burgerking-backend/target/
+burgerking-backend/.mvn/wrapper/maven-wrapper.jar
+
+# Frontend
+burgerking-frontend/node_modules/
+burgerking-frontend/dist/
+
+# Uploads
+uploads/
+burgerking-backend/uploads/
