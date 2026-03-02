@@ -27,5 +27,7 @@ burgerking-frontend/node_modules/
 burgerking-frontend/dist/
 
 # Uploads
-uploads/
-burgerking-backend/uploads/
+uploads/*
+!uploads/.gitkeep
+burgerking-backend/uploads/*
+!burgerking-backend/uploads/.gitkeep

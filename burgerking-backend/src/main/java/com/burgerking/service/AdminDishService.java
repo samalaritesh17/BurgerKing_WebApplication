@@ -7,6 +7,7 @@ import com.burgerking.model.DishImage;
 import com.burgerking.repository.DishImageRepository;
 import com.burgerking.repository.DishRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,13 +26,16 @@ public class AdminDishService {
 
     private final DishRepository dishRepository;
     private final DishImageRepository dishImageRepository;
+    private final String uploadDir;
 
     public AdminDishService(
             DishRepository dishRepository,
-            DishImageRepository dishImageRepository
+            DishImageRepository dishImageRepository,
+            @Value("${app.upload-dir:uploads}") String uploadDir
     ) {
         this.dishRepository = dishRepository;
         this.dishImageRepository = dishImageRepository;
+        this.uploadDir = uploadDir;
     }
 
     public List<DishResponse> getAllDishes() {
@@ -122,8 +126,11 @@ public class AdminDishService {
         dishRepository.save(dish);
 
         if (image != null && !image.isEmpty()) {
-            String fileName = UUID.randomUUID() + "_" + image.getOriginalFilename();
-            Path uploadPath = Paths.get("uploads", fileName);
+            String safeOriginal = sanitizeFilename(image.getOriginalFilename());
+            String fileName = UUID.randomUUID() + "_" + safeOriginal;
+
+            Path uploadRoot = Paths.get(uploadDir);
+            Path uploadPath = uploadRoot.resolve(fileName);
 
             try {
                 Files.createDirectories(uploadPath.getParent());
@@ -134,7 +141,8 @@ public class AdminDishService {
 
             DishImage dishImage = new DishImage();
             dishImage.setDish(dish);
-            dishImage.setImageUrl("http://localhost:8080/uploads/" + fileName);
+            // Store a relative URL so it works across environments.
+            dishImage.setImageUrl("/uploads/" + fileName);
 
             dishImageRepository.save(dishImage);
         }
@@ -152,7 +160,7 @@ public class AdminDishService {
             // Extract filename from URL
             if (imageUrl != null && imageUrl.contains("/uploads/")) {
                 String fileName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
-                Path filePath = Paths.get("uploads", fileName);
+                Path filePath = Paths.get(uploadDir).resolve(fileName);
 
                 try {
                     Files.deleteIfExists(filePath);
@@ -168,6 +176,24 @@ public class AdminDishService {
 
         // 2️⃣ Delete dish (image row auto-deletes due to FK cascade)
         dishRepository.deleteById(dishId);
+    }
+
+    private static String sanitizeFilename(String original) {
+        if (original == null || original.isBlank()) {
+            return "image";
+        }
+
+        // Normalize any client-provided paths (e.g. C:\\fakepath\\x.png)
+        String normalized = original.replace('\\', '/');
+        int idx = normalized.lastIndexOf('/');
+        String base = idx >= 0 ? normalized.substring(idx + 1) : normalized;
+
+        // Keep ASCII-safe characters only.
+        String safe = base.replaceAll("[^A-Za-z0-9._-]", "_");
+        if (safe.isBlank()) {
+            return "image";
+        }
+        return safe;
     }
 
     public Dish getDishById(int id) {
