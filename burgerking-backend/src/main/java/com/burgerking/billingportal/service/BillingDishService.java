@@ -20,7 +20,8 @@ public class BillingDishService {
 
     public List<BillingDishResponse> getAllAvailableDishes() {
 
-        List<Dish> dishes = dishRepository.findByAvailableTrue();
+        // Prefer a fetch-join query so images are consistently available.
+        List<Dish> dishes = dishRepository.findAvailableWithImages();
 
         return dishes.stream().map(dish -> {
             BillingDishResponse dto = new BillingDishResponse();

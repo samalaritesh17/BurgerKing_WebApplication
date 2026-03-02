@@ -3,6 +3,24 @@ import "../css/dishcard.css";
 
 const DishCard = ({ dish, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(0);
+  const [imgFailed, setImgFailed] = useState(false);
+
+  const apiBase =
+    (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_API_BASE_URL) ||
+    "http://localhost:8080";
+
+  const imageSrc = (() => {
+    const raw = dish?.image;
+    if (!raw || imgFailed) return "";
+    if (typeof raw !== "string") return "";
+    const s = raw.trim();
+    if (!s) return "";
+
+    // Support both absolute URLs and relative paths like /uploads/x.png
+    if (/^https?:\/\//i.test(s)) return s;
+    if (s.startsWith("/")) return `${apiBase}${s}`;
+    return `${apiBase}/${s}`;
+  })();
 
   const handleAdd = () => {
     setQuantity(1);
@@ -24,8 +42,14 @@ const DishCard = ({ dish, onQuantityChange }) => {
   return (
     <div className="dish-card">
       <div className="dish-image">
-        {dish.image ? (
-          <img src={dish.image} alt={dish.name} />
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={dish.name}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgFailed(true)}
+          />
         ) : (
           <div className="no-image">🍔</div>
         )}
